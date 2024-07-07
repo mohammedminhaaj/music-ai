@@ -32,14 +32,12 @@ const SummarySection: React.FC<{ lyrics: string; className?: string }> = memo(
 				};
 				summarizeLyrics();
 			}
-		}, [isLoading]);
+		}, [isLoading, lyrics]);
 		return (
 			<div className={`space-y-3 ${className}`}>
 				{isLoading ? (
 					<p className='inline-flex items-center gap-2 text-xs'>
-						<span className='animate-pulse'>
-							<Sparkles className='stroke-purple-600 fill-purple-600' />
-						</span>
+						<Sparkles className='stroke-purple-600 fill-purple-600 animate-pulse' />
 						Analyzing the lyrics...
 					</p>
 				) : (
@@ -68,7 +66,7 @@ const SummarySection: React.FC<{ lyrics: string; className?: string }> = memo(
 	}
 );
 
-SummarySection.displayName = "SummarySection"
+SummarySection.displayName = 'SummarySection';
 
 const LyricSection: React.FC<{ formattedLyrics: string; className?: string }> =
 	memo(
@@ -80,12 +78,12 @@ const LyricSection: React.FC<{ formattedLyrics: string; className?: string }> =
 			className?: string;
 		}) => (
 			<p
-				dangerouslySetInnerHTML={{ __html: formattedLyrics! }}
+				dangerouslySetInnerHTML={{ __html: formattedLyrics }}
 				className={`text-xs ${className}`}></p>
 		)
 	);
 
-LyricSection.displayName = "LyricSection"
+LyricSection.displayName = 'LyricSection';
 
 const TabView: React.FC<{ lyrics: string }> = ({
 	lyrics,
