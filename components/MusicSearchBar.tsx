@@ -99,8 +99,8 @@ const MusicSearchBar: React.FC = () => {
 						if (searchRef.current) searchRef.current.value = '';
 					}}
 					title='clear search'
-					className='group absolute top-4 right-4 text-purple-500'>
-					<X className='group-hover:rotate-90 transition-all duration-300' />
+					className='group/clear absolute top-4 right-4 text-purple-500'>
+					<X className='group-hover/clear:rotate-90 transition-all duration-300' />
 				</button>
 			)}
 

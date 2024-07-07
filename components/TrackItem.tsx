@@ -16,8 +16,8 @@ const TrackItem: React.FC<{ trackItem: Track }> = ({
 	<motion.li variants={itemVariants} transition={{ bounce: 0 }}>
 		<Link
 			href={`/track/${trackItem.track.track_id}`}
-			className='group flex items-center justify-center gap-2 hover:bg-purple-600 hover:text-white p-2 rounded-lg transition-colors duration-300'>
-			<div className='rounded-md size-16 bg-purple-100 group-hover:bg-purple-300 transition-colors duration-300 flex items-center justify-center'>
+			className='group/track flex items-center justify-center gap-2 hover:bg-purple-600 hover:text-white p-2 rounded-lg transition-colors duration-300'>
+			<div className='rounded-md size-16 bg-purple-100 group-hover/track:bg-purple-300 transition-colors duration-300 flex items-center justify-center'>
 				<Music className='text-black' />
 			</div>
 			<div className='flex flex-col items-start justify-start w-full'>
@@ -29,7 +29,7 @@ const TrackItem: React.FC<{ trackItem: Track }> = ({
 				<span className='font-extralight text-xs flex gap-1 items-center'>
 					<User
 						size={15}
-						className='fill-black group-hover:fill-white'
+						className='fill-black group-hover/track:fill-white'
 					/>
 					<p className='line-clamp-1'>
 						{trackItem.track.artist_name}
