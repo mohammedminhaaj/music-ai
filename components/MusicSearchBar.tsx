@@ -60,12 +60,11 @@ const MusicSearchBar: React.FC = () => {
 				};
 				loadTracks();
 			} else {
-				trackList.length &&
-					setTrackList((prev: TrackListState) => ({
-						...prev,
-						isLoading: true,
-						trackList: [],
-					}));
+				setTrackList((prev: TrackListState) => ({
+					...prev,
+					isLoading: true,
+					trackList: [],
+				}));
 			}
 		}, 500);
 

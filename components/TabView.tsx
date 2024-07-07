@@ -32,7 +32,7 @@ const SummarySection: React.FC<{ lyrics: string; className?: string }> = memo(
 				};
 				summarizeLyrics();
 			}
-		}, [lyrics]);
+		}, [isLoading]);
 		return (
 			<div className={`space-y-3 ${className}`}>
 				{isLoading ? (
@@ -68,6 +68,8 @@ const SummarySection: React.FC<{ lyrics: string; className?: string }> = memo(
 	}
 );
 
+SummarySection.displayName = "SummarySection"
+
 const LyricSection: React.FC<{ formattedLyrics: string; className?: string }> =
 	memo(
 		({
@@ -82,6 +84,8 @@ const LyricSection: React.FC<{ formattedLyrics: string; className?: string }> =
 				className={`text-xs ${className}`}></p>
 		)
 	);
+
+LyricSection.displayName = "LyricSection"
 
 const TabView: React.FC<{ lyrics: string }> = ({
 	lyrics,
