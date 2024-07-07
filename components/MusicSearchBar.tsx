@@ -1,14 +1,14 @@
 'use client';
 
-import { getSongList } from '@/actions/songs';
+import { getTrackList } from '@/actions/track';
 import { Track } from '@/lib/types';
 import { AnimatePresence, motion } from 'framer-motion';
 import { CircleX, Info, Loader2, X } from 'lucide-react';
 import { useEffect, useId, useRef, useState } from 'react';
-import SongItem from './SongItem';
+import TrackItem from './TrackItem';
 
-type SongListState = {
-	songList: Track[];
+type TrackListState = {
+	trackList: Track[];
 	isLoading: boolean;
 	error: string | null;
 };
@@ -17,9 +17,9 @@ const MusicSearchBar: React.FC = () => {
 	const searchbarId = useId();
 	const [searchText, setSearchText] = useState<string>('');
 	const searchRef = useRef<HTMLInputElement>(null);
-	const [{ songList, isLoading, error }, setSongList] =
-		useState<SongListState>({
-			songList: [],
+	const [{ trackList, isLoading, error }, setTrackList] =
+		useState<TrackListState>({
+			trackList: [],
 			isLoading: true,
 			error: null,
 		});
@@ -27,34 +27,34 @@ const MusicSearchBar: React.FC = () => {
 	useEffect(() => {
 		const timer = setTimeout(() => {
 			if (searchText.length >= 3) {
-				setSongList((prev: SongListState) => ({
+				setTrackList((prev: TrackListState) => ({
 					...prev,
 					isLoading: true,
 				}));
-				const loadSongs = async () => {
-					const response = await getSongList(searchText);
+				const loadTracks = async () => {
+					const response = await getTrackList(searchText);
 					if (response.code >= 400) {
-						setSongList((prev: SongListState) => ({
+						setTrackList((prev: TrackListState) => ({
 							...prev,
 							isLoading: false,
 							error: response.message,
 						}));
 					} else {
-						setSongList((prev: SongListState) => ({
+						setTrackList((prev: TrackListState) => ({
 							...prev,
 							isLoading: false,
 							error: null,
-							songList: response.data?.track_list!,
+							trackList: response.data?.track_list!,
 						}));
 					}
 				};
-				loadSongs();
+				loadTracks();
 			} else {
-				songList.length &&
-					setSongList((prev: SongListState) => ({
+				trackList.length &&
+					setTrackList((prev: TrackListState) => ({
 						...prev,
 						isLoading: true,
-						songList: [],
+						trackList: [],
 					}));
 			}
 		}, 500);
@@ -65,14 +65,17 @@ const MusicSearchBar: React.FC = () => {
 	return (
 		<>
 			<label htmlFor={searchbarId} className='sr-only'>
-				Search songs
+				Search tracks
 			</label>
 			<input
+				spellCheck={false}
+				autoCorrect='false'
+				autoComplete='false'
 				id={searchbarId}
 				ref={searchRef}
 				placeholder='Search title, artist, or lyrics...'
 				type='text'
-				className='border w-full rounded-full py-4 pl-4 pr-10'
+				className={`border w-full rounded-full py-4 pl-4 ${searchText.length ? "pr-10" : "pr-4"}`}
 				onChange={(event) => {
 					setSearchText(event.target.value);
 				}}
@@ -96,7 +99,7 @@ const MusicSearchBar: React.FC = () => {
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1 }}
 						exit={{ opacity: 0 }}
-						className='absolute left-0 right-0 w-full rounded-xl shadow-2xl mt-5 p-5 flex justify-center items-center search-results'>
+						className='absolute bg-white z-10 left-0 right-0 w-full rounded-xl shadow-2xl mt-5 p-5 flex justify-center items-center search-result'>
 						{isLoading ? (
 							<Loader2 className='animate-spin' />
 						) : error ? (
@@ -106,21 +109,21 @@ const MusicSearchBar: React.FC = () => {
 								</span>
 								{error}
 							</p>
-						) : songList.length ? (
+						) : trackList.length ? (
 							<ul className='space-y-2 w-full'>
-								{songList.map((item) => (
-									<SongItem
+								{trackList.map((item) => (
+									<TrackItem
 										key={item.track.track_id}
-										songItem={item}
+										trackItem={item}
 									/>
 								))}
 							</ul>
 						) : (
-							<p className='w-full text-center p-3 flex justify-center items-center gap-2'>
+							<p className='w-full text-center p-3 flex justify-center items-center gap-3'>
 								<span>
 									<Info />
 								</span>
-								No songs found for the search
+								No tracks found for the search
 							</p>
 						)}
 					</motion.div>
