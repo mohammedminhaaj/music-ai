@@ -10,26 +10,26 @@ const TrackPage: React.FC<{
 
 	return (
 		<>
-			<div className='bg-gray-200 size-48 flex items-center justify-center md:size-60 rounded-lg'>
+			<div className='bg-purple-200 size-48 flex items-center justify-center md:size-60 rounded-lg shadow-lg'>
 				<Music2 size={60} className='rotate-12' />
 			</div>
 			<h2
-				className='font-bold text-lg md:text-xl line-clamp-1'
+				className='font-bold text-lg md:text-xl line-clamp-1 text-purple-900'
 				title={track.data?.track.track_name}>
 				{track.data?.track.track_name}
 			</h2>
 			<h3 className='font-extralight flex justify-center items-center gap-2'>
-				<User size={16} className='fill-black' />
+				<User size={16} className='fill-purple-900' />
 				<span
-					className='line-clamp-1'
+					className='line-clamp-1 text-xs'
 					title={track.data?.track.artist_name}>
 					{track.data?.track.artist_name}
 				</span>
 			</h3>
 			<h3 className='font-extralight flex justify-center items-center gap-2'>
-				<DiscAlbum size={16} />
+				<DiscAlbum size={16} className='text-purple-900' />
 				<span
-					className='line-clamp-1'
+					className='line-clamp-1 text-xs'
 					title={track.data?.track.album_name}>
 					{track.data?.track.album_name}
 				</span>
