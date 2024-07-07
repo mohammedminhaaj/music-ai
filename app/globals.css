@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.floating-label {
+	@apply absolute bg-white text-sm text-gray-400 bottom-2.5 left-2.5 transition-transform duration-200 peer-focus:-translate-y-6 peer-valid:-translate-y-6 peer-focus:text-xs peer-valid:text-xs peer-focus:text-purple-600 peer-focus:px-1 peer-valid:px-1;
+}
+
+.floating-input {
+	@apply border rounded p-2 focus:outline-purple-600 w-full;
+}
+
+.form-input {
+	@apply w-full my-1 rounded border focus:outline-purple-600 py-1 px-2;
+}
+
+.form-label {
+	@apply absolute -top-1 left-2 bg-white px-1 text-xs text-gray-400 peer-focus:text-purple-600;
+}

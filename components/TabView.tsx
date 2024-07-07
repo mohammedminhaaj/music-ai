@@ -49,7 +49,7 @@ const SummarySection: React.FC<{ lyrics: string }> = memo(
 								<p className='font-bold text-xs'>
 									Countries Mentioned:
 								</p>
-								<ul className='inline-flex gap-3'>
+								<ul className='inline-flex gap-3 flex-wrap'>
 									{countries.map((country, index) => (
 										<li className='text-xs rounded-full py-1 px-2 font-extralight bg-blue-500 text-white' key={index}>
 											{country}
