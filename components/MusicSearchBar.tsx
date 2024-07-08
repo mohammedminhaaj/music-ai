@@ -37,7 +37,10 @@ const MusicSearchBar: React.FC = () => {
 	useEffect(() => {
 		const timer = setTimeout(() => {
 			if (searchText.length >= 3) {
-				window.scrollTo(0, 0);
+				window.scrollTo({
+					top: 0,
+					behavior: 'smooth',
+				});
 				setTrackList((prev: TrackListState) => ({
 					...prev,
 					isLoading: true,
